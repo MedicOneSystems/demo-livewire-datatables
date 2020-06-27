@@ -1,0 +1,26 @@
+@tailwind base;
+
+ input:invalid, textarea:invalid, select:invalid {
+    box-shadow: none;
+}
+
+@tailwind components;
+
+
+@tailwind utilities;
+
+.spinner {
+    position: relative;
+    pointer-events: none;
+    animation: spinAround 500ms infinite linear;
+}
+
+@keyframes spinAround {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
