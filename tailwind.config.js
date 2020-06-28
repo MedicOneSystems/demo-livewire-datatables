@@ -8,7 +8,9 @@ module.exports = {
             },
         },
     },
-    variants: {},
+    variants: {
+        display: ['responsive', 'group-hover'],
+    },
     purge: {
         content: [
             './app/**/*.php',

@@ -2,12 +2,14 @@
 
 @section('content')
 
-<div class="w-64 mx-auto mt-20 space-y-12">
+<div class="mx-8 lg:mx-20 py-10 space-y-8">
 
+    <h1 class="text-3xl text-gray-700">Datatable of Contents</h1>
 
-    <a class="block text-2xl px-3 py2 rounded border-2 border-transparent hover:border-blue-500" href="{{ route('simple') }}">Simple</a>
-    <a class="block text-2xl px-3 py2 rounded border-2 border-transparent hover:border-blue-500" href="{{ route('intermediate') }}">Intermediate</a>
-    <a class="block text-2xl px-3 py2 rounded border-2 border-transparent hover:border-blue-500" href="{{ route('complex') }}">Complex</a>
+    <livewire:datatable-of-contents model="App\Page" />
+
+    <x-code file="app/Http/Livewire/DatatableOfContents.php" />
+
 </div>
 
 @endsection

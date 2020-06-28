@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PlanetSeeder::class);
         $this->call(WeaponSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(PageSeeder::class);
     }
 }

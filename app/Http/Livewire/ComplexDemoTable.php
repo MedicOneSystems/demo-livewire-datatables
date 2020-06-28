@@ -56,7 +56,12 @@ class ComplexDemoTable extends LivewireDatatable
 
             Field::fromColumn('planets.orbital_period')->hidden(),
 
-            Field::fromRaw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period), ' ', planets.name, ' years'), '---') AS `Native Age`"),
+            Field::fromRaw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS `Native Age (SQL)`")
+                ->hidden(),
+
+            Field::fromColumn('users.dob')
+                ->name('Native Age (PHP)')
+                ->callback('nativeAge'),
 
             Field::fromColumn('users.bedtime')
                 ->withTimeFilter()
@@ -91,7 +96,7 @@ class ComplexDemoTable extends LivewireDatatable
 
     public function getPlanetsProperty()
     {
-        return Planet::all();
+        return Planet::pluck('name');
     }
 
     public function getWeaponsProperty()
@@ -106,6 +111,19 @@ class ComplexDemoTable extends LivewireDatatable
 
     public function minutesTobedtime($date)
     {
-        return $date ? Carbon::parse($date)->diffForHumans(['parts' => 2]) : null;
+        if (!$date) {
+            return;
+        }
+        return Carbon::parse($date)->isPast()
+            ? Carbon::parse($date)->addDay()->diffForHumans(['parts' => 2])
+            : Carbon::parse($date)->diffForHumans(['parts' => 2]);
+    }
+
+    public function nativeAge($value, $row)
+    {
+        return
+            $value && is_numeric($row->orbital_period) ?
+            round(Carbon::parse($value)->diffInDays() / $row->orbital_period, 1) . ' ' . $row->Planet . ' years'
+            : '---';
     }
 }
