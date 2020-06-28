@@ -10,7 +10,7 @@ class IntermediateDemoTable extends LivewireDatatable
 
     public function fields()
     {
-        return $this->fieldset()
+        return $this->fieldsetFromModel()
             ->except('users.updated_at, users.email_verified_at')
             ->uppercase(['users.id', 'users.dob'])
             ->rename(['users.created_at' => 'Created'])
