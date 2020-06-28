@@ -2,18 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\User;
-use App\Weapon;
-use Livewire\Component;
-use Illuminate\Support\Carbon;
-use Mediconesystems\LivewireDatatables\Field;
-use Mediconesystems\LivewireDatatables\Fieldset;
-use Mediconesystems\LivewireDatatables\Traits\LivewireDatatable;
+use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
-class IntermediateDemoTable extends Component
+class IntermediateDemoTable extends LivewireDatatable
 {
-    use LivewireDatatable;
-
     public function fields()
     {
         return $this->fieldsetFromModel()

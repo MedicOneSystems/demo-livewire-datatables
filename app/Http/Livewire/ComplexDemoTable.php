@@ -3,21 +3,20 @@
 namespace App\Http\Livewire;
 
 use App\User;
+use App\Planet;
 use App\Weapon;
-use Livewire\Component;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Mediconesystems\LivewireDatatables\Field;
-use Mediconesystems\LivewireDatatables\Fieldset;
-use Mediconesystems\LivewireDatatables\Traits\LivewireDatatable;
+use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
-class ComplexDemoTable extends Component
+class ComplexDemoTable extends LivewireDatatable
 {
-    use LivewireDatatable;
 
     public function builder()
     {
-        return User::query();
+        return User::query()
+            ->leftJoin('planets', 'planets.id', 'users.planet_id');
     }
 
     public function fields()
@@ -36,6 +35,10 @@ class ComplexDemoTable extends Component
                 ->defaultSort('asc')
                 ->withTextFilter(),
 
+            Field::fromColumn('planets.name')
+                ->name('Planet')
+                ->withSelectFilter($this->planets),
+
             Field::fromColumn('users.dob')
                 ->name('DOB')
                 ->withDateFilter()
@@ -50,6 +53,10 @@ class ComplexDemoTable extends Component
             Field::fromColumn('users.dob')
                 ->name('Age')
                 ->callback('timeDiffFromNow'),
+
+            Field::fromColumn('planets.orbital_period')->hidden(),
+
+            Field::fromRaw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period), ' ', planets.name, ' years'), '---') AS `Native Age`"),
 
             Field::fromColumn('users.bedtime')
                 ->withTimeFilter()
@@ -82,6 +89,11 @@ class ComplexDemoTable extends Component
         ]);
     }
 
+    public function getPlanetsProperty()
+    {
+        return Planet::all();
+    }
+
     public function getWeaponsProperty()
     {
         return Weapon::all();
@@ -89,7 +101,7 @@ class ComplexDemoTable extends Component
 
     public function timeDiffFromNow($date)
     {
-        return $date ? Carbon::parse($date)->diffInYears(now()) : null;
+        return $date ? Carbon::parse($date)->longAbsoluteDiffForHumans(['parts' => 1]) : null;
     }
 
     public function minutesTobedtime($date)

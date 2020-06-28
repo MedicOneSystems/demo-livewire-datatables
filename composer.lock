@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93fa1f51d5f11609a0b554c980b85917",
+    "content-hash": "c65bf4e4409b47b7ca0703e888626513",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -59,75 +59,6 @@
             "time": "2020-05-31T07:17:05+00:00"
         },
         {
-            "name": "blade-ui-kit/blade-icons",
-            "version": "0.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/blade-ui-kit/blade-icons.git",
-                "reference": "5547d8e7ec1424168d945a02c253b18b27bded0b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/5547d8e7ec1424168d945a02c253b18b27bded0b",
-                "reference": "5547d8e7ec1424168d945a02c253b18b27bded0b",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "^7.14",
-                "illuminate/filesystem": "^7.14",
-                "illuminate/support": "^7.14",
-                "illuminate/view": "^7.14",
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "mockery/mockery": "^1.3",
-                "orchestra/testbench": "^5.0",
-                "phpunit/phpunit": "^8.0|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "BladeUI\\Icons\\BladeIconsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "BladeUI\\Icons\\": "src"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Adam Wathan",
-                    "email": "adam.wathan@gmail.com"
-                },
-                {
-                    "name": "Dries Vints",
-                    "email": "dries@vints.io",
-                    "homepage": "https://driesvints.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A package to easily make use of icons in your Laravel Blade views.",
-            "homepage": "https://github.com/blade-ui-kit/blade-icons",
-            "keywords": [
-                "blade",
-                "icons",
-                "laravel",
-                "svg"
-            ],
-            "time": "2020-06-17T18:41:21+00:00"
-        },
-        {
             "name": "brick/math",
             "version": "0.8.15",
             "source": {
@@ -178,6 +109,56 @@
                 }
             ],
             "time": "2020-04-15T15:59:35+00:00"
+        },
+        {
+            "name": "calebporzio/sushi",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/calebporzio/sushi.git",
+                "reference": "df69a1af1fbbc0aed96f6563770f8d79fe0eb6a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/calebporzio/sushi/zipball/df69a1af1fbbc0aed96f6563770f8d79fe0eb6a5",
+                "reference": "df69a1af1fbbc0aed96f6563770f8d79fe0eb6a5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.8 || ^6.0 || ^7.0",
+                "illuminate/support": "^5.8 || ^6.0 || ^7.0",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.10",
+                "orchestra/database": "3.8.* || 3.9.* || ^4.0",
+                "orchestra/testbench": "3.8.* || 3.9.* || ^4.0",
+                "phpunit/phpunit": "^7.5 || ^8.4 || ^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sushi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "Eloquent's missing \"array\" driver.",
+            "funding": [
+                {
+                    "url": "https://github.com/calebporzio",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-03-04T02:49:53+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1399,63 +1380,6 @@
                 }
             ],
             "time": "2020-06-08T15:12:38+00:00"
-        },
-        {
-            "name": "mediconesystems/blade-fontawesome",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../blade-fontawesome",
-                "reference": "c2de22c3fead9c083043385e663e13d5f41e965f"
-            },
-            "require": {
-                "blade-ui-kit/blade-icons": "^0.4.0",
-                "illuminate/support": "^7.14",
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^5.0",
-                "phpunit/phpunit": "^8.0|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "MedicOneSystems\\BladeFontawesome\\BladeFontawesomeServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MedicOneSystems\\BladeFontawesome\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Salmon",
-                    "email": "mark.salmon@mediconesystems.com",
-                    "homepage": "https://mediconesystems.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A package to easily make use of Fontawesome Icons in your Laravel Blade views.",
-            "homepage": "https://github.com/mediconesystems/blade-fontawesome",
-            "keywords": [
-                "Blade",
-                "Fontawesome Icons",
-                "Laravel"
-            ],
-            "transport-options": {
-                "relative": true
-            }
         },
         {
             "name": "mediconesystems/livewire-datatables",
@@ -4738,6 +4662,75 @@
             "time": "2020-05-05T10:53:32+00:00"
         },
         {
+            "name": "blade-ui-kit/blade-icons",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blade-ui-kit/blade-icons.git",
+                "reference": "5547d8e7ec1424168d945a02c253b18b27bded0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/5547d8e7ec1424168d945a02c253b18b27bded0b",
+                "reference": "5547d8e7ec1424168d945a02c253b18b27bded0b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.14",
+                "illuminate/filesystem": "^7.14",
+                "illuminate/support": "^7.14",
+                "illuminate/view": "^7.14",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Icons\\BladeIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BladeUI\\Icons\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Wathan",
+                    "email": "adam.wathan@gmail.com"
+                },
+                {
+                    "name": "Dries Vints",
+                    "email": "dries@vints.io",
+                    "homepage": "https://driesvints.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to easily make use of icons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-icons",
+            "keywords": [
+                "blade",
+                "icons",
+                "laravel",
+                "svg"
+            ],
+            "time": "2020-06-17T18:41:21+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.3.1",
             "source": {
@@ -5201,6 +5194,63 @@
                 "debugbar"
             ],
             "time": "2020-05-06T07:06:27+00:00"
+        },
+        {
+            "name": "mediconesystems/blade-fontawesome",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../blade-fontawesome",
+                "reference": "c2de22c3fead9c083043385e663e13d5f41e965f"
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^0.4.0",
+                "illuminate/support": "^7.14",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MedicOneSystems\\BladeFontawesome\\BladeFontawesomeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MedicOneSystems\\BladeFontawesome\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Salmon",
+                    "email": "mark.salmon@mediconesystems.com",
+                    "homepage": "https://mediconesystems.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to easily make use of Fontawesome Icons in your Laravel Blade views.",
+            "homepage": "https://github.com/mediconesystems/blade-fontawesome",
+            "keywords": [
+                "Blade",
+                "Fontawesome Icons",
+                "Laravel"
+            ],
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "mockery/mockery",
@@ -6914,7 +6964,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "mediconesystems/blade-fontawesome": 20,
         "mediconesystems/livewire-datatables": 20
     },
     "prefer-stable": true,

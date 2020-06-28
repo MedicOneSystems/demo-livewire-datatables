@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="lg:mx-20 xl:mx-32 py-10 space-y-8">
-    <h1 class="pb-4 text-2xl">Intermediate</h1>
+    <h1 class="text-2xl">Intermediate</h1>
 
     <livewire:intermediate-demo-table model="App\User" />
 

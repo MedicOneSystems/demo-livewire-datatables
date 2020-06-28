@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Planet;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,11 @@ class User extends Authenticatable
     public function weapons()
     {
         return $this->belongsToMany(Weapon::class);
+    }
+
+    public function planet()
+    {
+        return $this->belongsTo(Planet::class);
     }
 
     public function scopeSelectGroupedWeaponNames($query, $alias)
