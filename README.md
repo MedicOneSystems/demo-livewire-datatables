@@ -7,13 +7,22 @@
 
 ```bash
 git clone https://github.com/MedicOneSystems/demo-livewire-datatables.git
-cd livewire-datatables
+cd demo-livewire-datatables
+```
+
+- Install composer dependencies
+```bash
+composer install
 ```
 
 - Create your .env and populate database credentials
 ```bash
 cp .env.example .env
 ```
+
+- Generate App key
+```bash
+php artisan key
 
 - Migrate and seed the database
 ```bash
