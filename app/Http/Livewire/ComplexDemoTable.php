@@ -8,6 +8,7 @@ use App\Weapon;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Mediconesystems\LivewireDatatables\Field;
+use Mediconesystems\LivewireDatatables\Fieldset;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class ComplexDemoTable extends LivewireDatatable
@@ -19,12 +20,12 @@ class ComplexDemoTable extends LivewireDatatable
             ->leftJoin('planets', 'planets.id', 'users.planet_id');
     }
 
-    public function fields()
+    public function fieldset()
     {
-        return collect([
+        return Fieldset::fromArray([
             Field::fromColumn('users.id')
                 ->name('ID')
-                ->linkTo('job', 6),
+                ->linkTo('user', 6),
 
             Field::fromColumn('users.email_verified_at')
                 ->name('Email Verified')
@@ -33,10 +34,12 @@ class ComplexDemoTable extends LivewireDatatable
 
             Field::fromColumn('users.name')
                 ->defaultSort('asc')
+                ->globalSearch()
                 ->withTextFilter(),
 
             Field::fromColumn('planets.name')
                 ->name('Planet')
+                ->globalSearch()
                 ->withSelectFilter($this->planets),
 
             Field::fromColumn('users.dob')
@@ -74,10 +77,16 @@ class ComplexDemoTable extends LivewireDatatable
                 ->hidden(),
 
             Field::fromColumn('users.email')
+                ->globalSearch()
                 ->withTextFilter()
                 ->hidden(),
 
+            Field::fromColumn('users.bio')
+                ->truncate(20)
+                ->withTextFilter(),
+
             Field::fromColumn('users.role')
+                ->globalSearch()
                 ->withSelectFilter([
                     'Stormtrooper',
                     'AT-AT Pilot',

@@ -22,7 +22,6 @@ module.exports = {
             './resources/**/*.php',
             './resources/**/*.vue',
             './resources/**/*.twig',
-            './vendor/mediconesystems/**/*.php',
         ],
         options: {
             defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],

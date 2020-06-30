@@ -1,5 +1,5 @@
 <div class="">
-    @unless($hideShow)
+    @unless($this->hideToggles)
     <div class="mb-4 grid grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2">
         @foreach($fields as $index => $field)
         <button wire:click.prefetch="toggle('{{ $index }}')" class="px-3 py-2 rounded text-white text-xs focus:outline-none {{ $field['hidden'] ? 'bg-blue-100 hover:bg-blue-300 text-blue-600' : 'bg-blue-500 hover:bg-blue-800' }}">
@@ -8,10 +8,22 @@
         @endforeach
     </div>
     @endif
+    @if($this->globallySearched()->count())
+    <div class="mt-1 mb-2 flex rounded-md shadow-sm">
+    <div class="relative flex-grow focus-within:z-10">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" stroke="currentColor" fill="none">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+      <input wire:model.debounce.500ms="search" class="form-input block bg-gray-50 focus:bg-white w-full rounded-md pl-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" placeholder="search in {{ $this->globallySearched()->map->name->join(', ') }}" />
+    </div>
+  </div>
+    @endif
     <div class="rounded-lg shadow bg-white">
-        <div class="rounded-lg @if($paginationControls) rounded-b-none @endif max-w-screen overflow-x-scroll bg-white">
+        <div class="rounded-lg @unless($this->hidePagination) rounded-b-none @endif max-w-screen overflow-x-scroll bg-white">
             <div class="table align-middle min-w-full">
-                @if($header)
+                @unless($this->hideHeader)
                 <div class="table-row divide-x-2 divide-gray-200">
                     @foreach($this->visibleFields as $index => $field)
                     <div class="table-cell h-12 overflow-hidden align-top">
@@ -35,20 +47,14 @@
                 <div class="table-row p-1 divide-x divide-gray-100 {{ $loop->even ? 'bg-gray-100' : 'bg-gray-50' }}">
                     @foreach($this->visibleFields as $field)
                     <div class="table-cell px-6 py-2 whitespace-no-wrap text-sm leading-5 text-gray-900">
-                        @if($result->{$field['name']} === 'check-circle')
-                        <x-icons.check-circle class="text-green-600 mx-auto" />
-                        @elseif($result->{$field['name']} === 'x-circle')
-                        <x-icons.x-circle class="text-red-300 mx-auto" />
-                        @else
                         {!! $result->{$field['name']} !!}
-                        @endif
                     </div>
                     @endforeach
                 </div>
                 @endforeach
             </div>
         </div>
-        @if($paginationControls)
+        @unless($this->hidePagination)
         <div class="rounded-lg rounded-t-none max-w-screen rounded-lg border-b border-gray-200 bg-white">
             <div class="p-2 flex items-center justify-between">
                 <div class="flex items-center">
@@ -189,7 +195,7 @@
     </div>
     @endif
 
-    @if(count($this->selectFilters) || count($this->booleanFilters) || count($this->textFilters))
+    @if(count($this->selectFilters) || count($this->booleanFilters) || count($this->textFilters) || count($this->numberFilters))
     <div class="mt-4 p-4 rounded overflow-hidden align-middle min-w-full shadow sm:rounded-lg border-b border-gray-200 bg-white">
         <div class="h-6 flex justify-between items-center">
             <label class="uppercase tracking-wide text-blue-600 text-lg">Filters</label>
@@ -245,10 +251,11 @@
                     <span>{{ ucwords(str_replace('_', ' ', $filter['name'])) }}</span>
                 </label>
                 <div class="relative">
-                    <input name="{{ $filter['name'] }}" type="text" class="w-full form-input" wire:input.debounce.1s="doTextFilter('{{ $i }}', $event.target.value)" />
+                    <input name="{{ $filter['name'] }}" type="text" class="w-full form-input" wire:input.lazy="doTextFilter('{{ $i }}', $event.target.value)" />
                 </div>
             </div>
             @endforeach
+
         </div>
     </div>
     @endif

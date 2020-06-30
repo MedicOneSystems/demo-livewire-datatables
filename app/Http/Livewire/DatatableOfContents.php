@@ -3,29 +3,30 @@
 namespace App\Http\Livewire;
 
 use App\Page;
+use Illuminate\Support\Str;
 use Mediconesystems\LivewireDatatables\Field;
+use Mediconesystems\LivewireDatatables\Fieldset;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class DatatableOfContents extends LivewireDatatable
 {
-    public $hideShow = true;
-    public $header = false;
-    public $paginationControls = false;
+    public $model = Page::class;
 
-    public function fields()
+    public function fieldset()
     {
-        return collect([
+        return Fieldset::fromArray([
             Field::fromColumn('pages.title')
                 ->name('Page')
-                ->callback('homePageLink'),
+                ->callback('link'),
+
             Field::fromColumn('pages.description')
         ]);
     }
 
-    public function homePageLink($value)
+    public function link($value)
     {
         return view('livewire-datatables::link', [
-            'href' => "/$value",
+            'href' => "/" . Str::slug($value),
             'slot' => ucfirst($value)
         ]);
     }
