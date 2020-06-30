@@ -29,12 +29,8 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "../livewire-datatables"
-        },
-        {
-            "type": "path",
-            "url": "../blade-fontawesome"
+            "type": "vcs",
+            "url": "git@github.com:mediconesystems/livewire-datatables.git"
         }
     ],
     "config": {
