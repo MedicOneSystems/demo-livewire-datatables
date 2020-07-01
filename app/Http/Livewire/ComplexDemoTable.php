@@ -34,6 +34,7 @@ class ComplexDemoTable extends LivewireDatatable
 
             Field::fromColumn('users.name')
                 ->defaultSort('asc')
+                ->editable()
                 ->globalSearch()
                 ->withTextFilter(),
 
@@ -64,7 +65,8 @@ class ComplexDemoTable extends LivewireDatatable
 
             Field::fromColumn('users.dob')
                 ->name('Native Age (PHP)')
-                ->callback('nativeAge'),
+                ->callback('nativeAge')
+                ->additionalSelects(['orbital_period']),
 
             Field::fromColumn('users.bedtime')
                 ->withTimeFilter()
@@ -130,6 +132,7 @@ class ComplexDemoTable extends LivewireDatatable
 
     public function nativeAge($value, $row)
     {
+        // dd($row);
         return
             $value && is_numeric($row->orbital_period) ?
             round(Carbon::parse($value)->diffInDays() / $row->orbital_period, 1) . ' ' . $row->Planet . ' years'
