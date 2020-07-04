@@ -4,22 +4,22 @@ namespace App\Http\Livewire;
 
 use App\Page;
 use Illuminate\Support\Str;
-use Mediconesystems\LivewireDatatables\Field;
-use Mediconesystems\LivewireDatatables\Fieldset;
+use Mediconesystems\LivewireDatatables\Column;
+use Mediconesystems\LivewireDatatables\ColumnSet;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class DatatableOfContents extends LivewireDatatable
 {
     public $model = Page::class;
 
-    public function fieldset()
+    public function columns()
     {
-        return Fieldset::fromArray([
-            Field::fromColumn('pages.title')
-                ->name('Page')
+        return ColumnSet::fromArray([
+            Column::field('pages.title')
+                ->label('Page')
                 ->callback('link'),
 
-            Field::fromColumn('pages.description')
+            Column::field('pages.description')
         ]);
     }
 

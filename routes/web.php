@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Livewire\SimpleDemoTable;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
+use Mediconesystems\LivewireDatatables\Exports\UsersExport;
 
 Route::view('/', 'home')->name('home');
+Route::get('/export', function () {
+    return Excel::download(new UsersExport, 'users.xlsx');
+});
 
 Route::view('/simple', 'simple')->name('simple');
 Route::view('/intermediate', 'intermediate')->name('intermediate');

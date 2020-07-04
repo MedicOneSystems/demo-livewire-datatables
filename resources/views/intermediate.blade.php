@@ -6,23 +6,24 @@
 
         <livewire:livewire-datatable
             model="App\User"
-            :sort="'name|asc'"
-            :exclude="['bio', 'created_at', 'updated_at', 'email_verified_at']"
-            :hidden="['planet_id', 'email']"
-            :dates="['dob']"
-            :times="['bedtime|g:i A']"
-            :renames="['id|ID', 'planet_id|Planet ID', 'dob|DOB']"
+            sort="name|asc"
+            exclude="bio, created_at, updated_at, email_verified_at"
+            hide="planet_id, email"
+            dates="dob"
+            times="bedtime|g:i A"
+            renames="id|ID, planet_id|Planet ID, dob|DOB"
         />
 
     <x-code path="resources/views/intermediate.blade.php">
         @verbatim
-        <livewire:livewire-datatable
+   <livewire:livewire-datatable
     model="App\User"
-    :exclude="['bio', 'created_at', 'updated_at', 'email_verified_at']"
-    :hide="['planet_id', 'email']"
-    :dates="['dob']"
-    :times="['bedtime|g:i A']"
-    :renames="['id|ID', 'planet_id|Planet ID', 'dob|DOB']"
+    sort="name|asc"
+    exclude="bio, created_at, updated_at, email_verified_at"
+    hide="planet_id, email"
+    dates="dob"
+    times="bedtime|g:i A"
+    renames="id|ID, planet_id|Planet ID, dob|DOB"
 />
         @endverbatim
     </x-code>

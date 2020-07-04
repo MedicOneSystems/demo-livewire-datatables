@@ -17,7 +17,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^1.2",
-        "mediconesystems/livewire-datatables": "dev-master"
+        "mediconesystems/livewire-datatables": "dev-dev"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
@@ -29,8 +29,8 @@
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/MedicOneSystems/livewire-datatables.git"
+            "type": "path",
+            "url": "../livewire-datatables"
         }
     ],
     "config": {

@@ -7,8 +7,12 @@ use App\Planet;
 use App\Weapon;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Mediconesystems\LivewireDatatables\Field;
-use Mediconesystems\LivewireDatatables\Fieldset;
+use Mediconesystems\LivewireDatatables\Column;
+use Mediconesystems\LivewireDatatables\ColumnSet;
+use Mediconesystems\LivewireDatatables\DateColumn;
+use Mediconesystems\LivewireDatatables\TimeColumn;
+use Mediconesystems\LivewireDatatables\BooleanColumn;
+use Mediconesystems\LivewireDatatables\NumericColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class ComplexDemoTable extends LivewireDatatable
@@ -20,88 +24,83 @@ class ComplexDemoTable extends LivewireDatatable
             ->leftJoin('planets', 'planets.id', 'users.planet_id');
     }
 
-    public function fieldset()
+    public function columns()
     {
-        return Fieldset::fromArray([
-            Field::fromColumn('users.id')
-                ->name('ID')
+        return ColumnSet::fromArray([
+
+            NumericColumn::field('users.id')
+                ->label('ID')
+                ->filterable()
                 ->linkTo('user', 6),
 
-            Field::fromColumn('users.email_verified_at')
-                ->name('Email Verified')
-                ->formatBoolean()
-                ->withBooleanFilter(),
+            BooleanColumn::field('users.email_verified_at')
+                ->label('Email Verified')
+                ->filterable(),
 
-            Field::fromColumn('users.name')
+            Column::field('users.name')
                 ->defaultSort('asc')
                 ->editable()
-                ->globalSearch()
-                ->withTextFilter(),
+                ->searchable()
+                ->filterable(),
 
-            Field::fromColumn('planets.name')
-                ->name('Planet')
-                ->globalSearch()
-                ->withSelectFilter($this->planets),
+            Column::field('planets.name')
+                ->label('Planet')
+                ->filterable($this->planets)
+                ->searchable(),
 
-            Field::fromColumn('users.dob')
-                ->name('DOB')
-                ->withDateFilter()
-                ->formatDate()
-                ->hidden(),
+            DateColumn::field('users.dob')
+                ->label('DOB')
+                ->filterable(),
 
-            Field::fromColumn('users.dob')
-                ->name('Birthday')
-                ->formatDate('jS F')
+            DateColumn::field('users.dob')
+                ->label('Birthday')
+                ->format('jS F')
                 ->sortBy(DB::raw('DATE_FORMAT(users.dob, "%m%d%Y")')),
 
-            Field::fromColumn('users.dob')
-                ->name('Age')
-                ->callback('timeDiffFromNow'),
+            NumericColumn::raw('FLOOR(DATEDIFF(NOW(), users.dob)/365) AS Age')
+                ->sortBy(DB::raw('DATEDIFF(NOW(), users.dob)'))
+                ->filterable(),
 
-            Field::fromColumn('planets.orbital_period')->hidden(),
+            NumericColumn::field('planets.orbital_period')
+                ->filterable()
+                ->hide(),
 
-            Field::fromRaw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS `Native Age (SQL)`")
-                ->hidden(),
+            Column::raw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS `Native Age`")
+                ->hide(),
 
-            Field::fromColumn('users.dob')
-                ->name('Native Age (PHP)')
-                ->callback('nativeAge')
-                ->additionalSelects(['orbital_period']),
+            TimeColumn::field('users.bedtime')
+                ->filterable(),
 
-            Field::fromColumn('users.bedtime')
-                ->withTimeFilter()
-                ->formatTime()
-                ->hidden(),
+            // Column::field('users.bedtime')
+            //     ->label('Go to bed')
+            //     ->callback('minutesToBedtime')
+            //     ->hide(),
 
-            Field::fromColumn('users.bedtime')
-                ->name('Go to bed')
-                ->callback('minutesToBedtime')
-                ->hidden(),
+            // Column::field('users.email')
+            //     ->searchable()
+            //     ->withTextFilter()
+            //     ->hide(),
 
-            Field::fromColumn('users.email')
-                ->globalSearch()
-                ->withTextFilter()
-                ->hidden(),
+            // Column::field('users.bio')
+            //     ->truncate(20)
+            //     ->withTextFilter(),
 
-            Field::fromColumn('users.bio')
-                ->truncate(20)
-                ->withTextFilter(),
+            // Column::field('users.role')
+            //     ->searchable()
+            // // ->withSelectFilter([
+            // //     'Stormtrooper',
+            // //     'AT-AT Pilot',
+            // //     'AT-ST Driver',
+            // //     'Imperial Guard',
+            // //     'Shock Trooper',
+            // //     'Shadow Trooper',
+            // //     'Purge Trooper',
+            // //     'Jumptrooper'
+            // // ])
+            // ,
 
-            Field::fromColumn('users.role')
-                ->globalSearch()
-                ->withSelectFilter([
-                    'Stormtrooper',
-                    'AT-AT Pilot',
-                    'AT-ST Driver',
-                    'Imperial Guard',
-                    'Shock Trooper',
-                    'Shadow Trooper',
-                    'Purge Trooper',
-                    'Jumptrooper'
-                ]),
-
-            Field::fromScope('selectGroupedWeaponNames', 'Weapons')
-                ->withScopeSelectFilter('filterWeaponNames', $this->weapons)
+            // Column::scope('selectGroupedWeaponNames', 'Weapons')
+            //     ->withScopeSelectFilter('filterWeaponNames', $this->weapons)
         ]);
     }
 
@@ -132,7 +131,6 @@ class ComplexDemoTable extends LivewireDatatable
 
     public function nativeAge($value, $row)
     {
-        // dd($row);
         return
             $value && is_numeric($row->orbital_period) ?
             round(Carbon::parse($value)->diffInDays() / $row->orbital_period, 1) . ' ' . $row->Planet . ' years'
