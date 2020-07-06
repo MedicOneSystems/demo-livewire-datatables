@@ -71,36 +71,35 @@ class ComplexDemoTable extends LivewireDatatable
             TimeColumn::field('users.bedtime')
                 ->filterable(),
 
-            // Column::field('users.bedtime')
-            //     ->label('Go to bed')
-            //     ->callback('minutesToBedtime')
-            //     ->hide(),
+            Column::field('users.bedtime')
+                ->label('Go to bed')
+                ->callback('minutesToBedtime')
+                ->hide(),
 
-            // Column::field('users.email')
-            //     ->searchable()
-            //     ->withTextFilter()
-            //     ->hide(),
+            Column::field('users.email')
+                ->searchable()
+                ->filterable()
+                ->hide(),
 
-            // Column::field('users.bio')
-            //     ->truncate(20)
-            //     ->withTextFilter(),
+            Column::field('users.bio')
+                ->truncate(20)
+                ->filterable(),
 
-            // Column::field('users.role')
-            //     ->searchable()
-            // // ->withSelectFilter([
-            // //     'Stormtrooper',
-            // //     'AT-AT Pilot',
-            // //     'AT-ST Driver',
-            // //     'Imperial Guard',
-            // //     'Shock Trooper',
-            // //     'Shadow Trooper',
-            // //     'Purge Trooper',
-            // //     'Jumptrooper'
-            // // ])
-            // ,
+            Column::field('users.role')
+                ->searchable()
+                ->filterable([
+                    'Stormtrooper',
+                    'AT-AT Pilot',
+                    'AT-ST Driver',
+                    'Imperial Guard',
+                    'Shock Trooper',
+                    'Shadow Trooper',
+                    'Purge Trooper',
+                    'Jumptrooper'
+                ]),
 
-            // Column::scope('selectGroupedWeaponNames', 'Weapons')
-            //     ->withScopeSelectFilter('filterWeaponNames', $this->weapons)
+            Column::scope('selectGroupedWeaponNames', 'Weapons')
+                ->filterable($this->weapons, 'filterWeaponNames')
         ]);
     }
 

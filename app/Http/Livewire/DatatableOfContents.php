@@ -25,7 +25,7 @@ class DatatableOfContents extends LivewireDatatable
 
     public function link($value)
     {
-        return view('livewire-datatables::link', [
+        return view('datatables::link', [
             'href' => "/" . Str::slug($value),
             'slot' => ucfirst($value)
         ]);
