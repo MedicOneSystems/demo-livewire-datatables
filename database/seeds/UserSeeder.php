@@ -9,11 +9,13 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        factory(User::class, 2000)->create();
+        factory(User::class, 10000)->create();
 
-        User::all()->each(function ($user) {
+        $weapons = Weapon::all();
+
+        User::all()->each(function ($user) use ($weapons) {
             for ($i = 0; $i < rand(0, 3); $i++) {
-                $user->weapons()->attach(Weapon::all()->random());
+                $user->weapons()->attach($weapons->random());
             }
         });
     }

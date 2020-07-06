@@ -1,0 +1,13 @@
+id: 11545
+name: demo-livewire-datatables
+environments:
+    production:
+        database: livewire-datatables-db
+        memory: 1024
+        cli-memory: 512
+        runtime: php-7.4
+        build:
+            - 'composer install --no-dev'
+            - 'php artisan event:cache'
+        deploy:
+            - 'php artisan migrate --force --seed'
