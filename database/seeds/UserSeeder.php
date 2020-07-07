@@ -9,7 +9,7 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        factory(User::class, 10000)->create();
+        factory(User::class, 2000)->create();
 
         $weapons = Weapon::all();
 

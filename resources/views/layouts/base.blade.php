@@ -13,14 +13,14 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ 'css/prism.css' }}">
+    <link rel="stylesheet" href="{{ asset('css/prism.css') }}">
     @livewireStyles
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script defer src="{{ mix('js/app.js') }}"></script>
-    <script defer src="{{ 'js/prism.js' }}"></script>
+    <script defer src="{{ asset('js/prism.js') }}"></script>
 </head>
 
 <body>
