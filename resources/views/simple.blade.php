@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Simple')
 @section('content')
 <div class="mx-8 lg:mx-20 py-10 space-y-8">
     <h1 class="text-2xl">Simple</h1>

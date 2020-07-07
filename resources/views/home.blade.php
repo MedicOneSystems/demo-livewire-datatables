@@ -1,8 +1,8 @@
 @extends('layouts.app')
-
+@section('title', 'Home')
 @section('content')
 
-<div class="mx-8 lg:mx-20 py-10 space-y-8">
+<div class="mx-8 lg:\mx-20 py-10 space-y-8">
 
     <h1 class="text-3xl text-gray-700">Datatable of Contents</h1>
 
