@@ -1,5 +1,7 @@
 # Livewire Datatables
 
+## [Live Demo](https://livewire-datatables.com)
+
 ## Demo Laravel app for [Livewire Datatables](https://github.com/mediconesystems/livewire-datatables)
 
 ### Installation
