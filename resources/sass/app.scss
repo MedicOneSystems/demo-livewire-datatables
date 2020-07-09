@@ -1,6 +1,8 @@
 @tailwind base;
 
- input:invalid, textarea:invalid, select:invalid {
+input:invalid,
+textarea:invalid,
+select:invalid {
     box-shadow: none;
 }
 
@@ -12,7 +14,7 @@
 .spinner {
     position: relative;
     pointer-events: none;
-    animation: spinAround 500ms infinite linear;
+    animation: spinAround 240ms infinite linear;
 }
 
 @keyframes spinAround {
@@ -21,6 +23,6 @@
     }
 
     to {
-        transform: rotate(360deg);
+        transform: rotate(40deg);
     }
 }

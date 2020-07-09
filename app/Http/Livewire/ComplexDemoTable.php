@@ -31,7 +31,15 @@ class ComplexDemoTable extends LivewireDatatable
             NumericColumn::field('users.id')
                 ->label('ID')
                 ->filterable()
-                ->linkTo('user', 6),
+                ->linkTo('user', 6)
+                ,
+
+            Column::field('users.id')
+                ->label('Closure')
+                ->filterable()
+                ->callback(function($value, $row) {
+                    return 'User ' . $value . ' is from ' . $row['Planet'];
+                }),
 
             BooleanColumn::field('users.email_verified_at')
                 ->label('Email Verified')
@@ -73,8 +81,12 @@ class ComplexDemoTable extends LivewireDatatable
 
             Column::field('users.bedtime')
                 ->label('Go to bed')
-                ->callback('minutesToBedtime')
-                ->hide(),
+                ->callback(function ($date){
+                    if (!$date) { return; }
+                    return Carbon::parse($date)->isPast()
+                        ? Carbon::parse($date)->addDay()->diffForHumans(['parts' => 2])
+                        : Carbon::parse($date)->diffForHumans(['parts' => 2]);
+                })->hide(),
 
             Column::field('users.email')
                 ->searchable()
@@ -111,28 +123,5 @@ class ComplexDemoTable extends LivewireDatatable
     public function getWeaponsProperty()
     {
         return Weapon::all();
-    }
-
-    public function timeDiffFromNow($date)
-    {
-        return $date ? Carbon::parse($date)->longAbsoluteDiffForHumans(['parts' => 1]) : null;
-    }
-
-    public function minutesTobedtime($date)
-    {
-        if (!$date) {
-            return;
-        }
-        return Carbon::parse($date)->isPast()
-            ? Carbon::parse($date)->addDay()->diffForHumans(['parts' => 2])
-            : Carbon::parse($date)->diffForHumans(['parts' => 2]);
-    }
-
-    public function nativeAge($value, $row)
-    {
-        return
-            $value && is_numeric($row->orbital_period) ?
-            round(Carbon::parse($value)->diffInDays() / $row->orbital_period, 1) . ' ' . $row->Planet . ' years'
-            : '---';
     }
 }

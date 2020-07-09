@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Intermediate')
+@section('title', 'Intermediate   ')
 @section('content')
 <div class="mx-8 lg:mx-20 py-10 space-y-8">
     <h1 class="text-2xl">Intermediate</h1>
@@ -8,6 +8,7 @@
         model="App\User"
         sort="name|asc"
         exclude="bio, created_at, updated_at, email_verified_at"
+        searchable="name, email"
         hide="planet_id, email"
         dates="dob"
         times="bedtime|g:i A"

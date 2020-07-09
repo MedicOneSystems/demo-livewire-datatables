@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{ url('/mos_favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ url('/MOS_favicon.png') }}">
     <meta name="description" content="Rich data tables using Laravel, Livewire, Alpine JS, and Tailwind CSS">
 
     @hasSection('title')

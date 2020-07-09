@@ -17,17 +17,14 @@ class DatatableOfContents extends LivewireDatatable
         return ColumnSet::fromArray([
             Column::field('pages.title')
                 ->label('Page')
-                ->callback('link'),
+                ->callback(function ($value) {
+                    return view('datatables::link', [
+                        'href' => "/" . Str::slug($value),
+                        'slot' => ucfirst($value)
+                    ]);
+                }),
 
             Column::field('pages.description')
-        ]);
-    }
-
-    public function link($value)
-    {
-        return view('datatables::link', [
-            'href' => "/" . Str::slug($value),
-            'slot' => ucfirst($value)
         ]);
     }
 }

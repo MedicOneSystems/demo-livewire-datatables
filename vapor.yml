@@ -3,7 +3,6 @@ name: demo-livewire-datatables
 environments:
     production:
         database: livewire-datatables-db
-        domain: livewire-datatables.com
         memory: 1024
         cli-memory: 512
         runtime: php-7.4

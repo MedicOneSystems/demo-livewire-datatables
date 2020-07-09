@@ -30,8 +30,8 @@
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/mediconesystems/livewire-datatables.git"
+            "type": "path",
+            "url": "../livewire-datatables"
         }
     ],
     "config": {
