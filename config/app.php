@@ -2,6 +2,8 @@
 
 return [
 
+    'google' => env('GOOGLE_MAPS_KEY', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

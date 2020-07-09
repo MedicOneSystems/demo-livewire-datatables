@@ -81,12 +81,7 @@ class ComplexDemoTable extends LivewireDatatable
 
             Column::field('users.bedtime')
                 ->label('Go to bed')
-                ->callback(function ($date){
-                    if (!$date) { return; }
-                    return Carbon::parse($date)->isPast()
-                        ? Carbon::parse($date)->addDay()->diffForHumans(['parts' => 2])
-                        : Carbon::parse($date)->diffForHumans(['parts' => 2]);
-                })->hide(),
+                ->callback('bedtime')->hide(),
 
             Column::field('users.email')
                 ->searchable()
@@ -123,5 +118,12 @@ class ComplexDemoTable extends LivewireDatatable
     public function getWeaponsProperty()
     {
         return Weapon::all();
+    }
+
+    public function bedtime($date){
+        if (!$date) { return; }
+        return Carbon::parse($date)->isPast()
+            ? Carbon::parse($date)->addDay()->diffForHumans(['parts' => 2])
+            : Carbon::parse($date)->diffForHumans(['parts' => 2]);
     }
 }

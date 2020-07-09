@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->time('bedtime')->nullable();
             $table->string('role')->nullable();
             $table->text('bio')->nullable();
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

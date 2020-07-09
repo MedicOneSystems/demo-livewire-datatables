@@ -29,6 +29,8 @@ $factory->define(User::class, function (Faker $faker) {
         'dob' => $faker->dateTimeBetween('- 100 years'),
         'role' => $faker->randomElement(['Stormtrooper', 'AT-AT Pilot', 'AT-ST Driver', 'Imperial Guard', 'Shock Trooper', 'Shadow Trooper', 'Purge Trooper', 'Jumptrooper', null]),
         'bio' => $faker->paragraphs(2, true),
-        'planet_id' => $faker->numberBetween(1, Planet::all()->count())
+        'planet_id' => $faker->numberBetween(1, Planet::all()->count()),
+        'latitude' => $faker->latitude(50.5, 51.5),
+        'longitude' => $faker->longitude(-1.5, 1.5),
     ];
 });
