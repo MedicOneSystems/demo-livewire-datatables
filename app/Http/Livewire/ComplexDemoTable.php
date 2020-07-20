@@ -31,14 +31,14 @@ class ComplexDemoTable extends LivewireDatatable
             NumericColumn::field('users.id')
                 ->label('ID')
                 ->filterable()
-                ->linkTo('user', 6)
-                ,
+                ->linkTo('user', 6),
 
             Column::field('users.id')
                 ->label('Closure')
                 ->filterable()
+                ->additionalSelects('planets.name AS planetName')
                 ->callback(function($value, $row) {
-                    return 'User ' . $value . ' is from ' . $row->Planet;
+                    return 'User ' . $value . ' is from ' . $row->planetName;
                 }),
 
             BooleanColumn::field('users.email_verified_at')

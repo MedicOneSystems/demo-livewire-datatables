@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d809ffde9a2c735a391cb69b4902617a",
+    "content-hash": "567d2cfe7582f8a976a55a40ca3850e8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1960,16 +1960,10 @@
         {
             "name": "mediconesystems/livewire-datatables",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:MedicOneSystems/livewire-datatables.git",
-                "reference": "9febab46048e3a78fc02b62a97cb8439e75855ec"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/9febab46048e3a78fc02b62a97cb8439e75855ec",
-                "reference": "9febab46048e3a78fc02b62a97cb8439e75855ec",
-                "shasum": ""
+                "type": "path",
+                "url": "../livewire-datatables",
+                "reference": "9febab46048e3a78fc02b62a97cb8439e75855ec"
             },
             "require": {
                 "illuminate/support": "^7.0",
@@ -2025,10 +2019,9 @@
                 "livewire-datatables",
                 "mediconesystems"
             ],
-            "support": {
-                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/master"
-            },
-            "time": "2020-07-20T12:35:34+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "monolog/monolog",
