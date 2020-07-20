@@ -47,4 +47,21 @@ class User extends Authenticatable
             $query->where('weapons.id', $value);
         });
     }
+
+    public function scopeHasLightSaber($query, $alias)
+    {
+        $query->addSelect([
+            $alias => Weapon::selectRaw('IF(COUNT(weapons.id), 1, 0)')
+                ->leftJoin('user_weapon', 'user_weapon.weapon_id', 'weapons.id')
+                ->whereColumn('user_weapon.user_id', 'users.id')
+                ->where('weapons.name', 'Light Saber')
+        ]);
+    }
+
+    public function scopeFilterHasLightSaber($query, $value)
+    {
+        $query->whereHas('weapons', function ($query) use ($value) {
+            $query->where('weapons.name', $value ? '=' : '<>', 'Light Saber');
+        });
+    }
 }

@@ -38,7 +38,7 @@ class ComplexDemoTable extends LivewireDatatable
                 ->label('Closure')
                 ->filterable()
                 ->callback(function($value, $row) {
-                    return 'User ' . $value . ' is from ' . $row['Planet'];
+                    return 'User ' . $value . ' is from ' . $row->Planet;
                 }),
 
             BooleanColumn::field('users.email_verified_at')
@@ -106,7 +106,10 @@ class ComplexDemoTable extends LivewireDatatable
                 ]),
 
             Column::scope('selectGroupedWeaponNames', 'Weapons')
-                ->filterable($this->weapons, 'filterWeaponNames')
+                ->filterable($this->weapons, 'filterWeaponNames'),
+
+            BooleanColumn::scope('hasLightSaber', 'LS')
+                ->filterable(null, 'filterHasLightSaber')
         ]);
     }
 
