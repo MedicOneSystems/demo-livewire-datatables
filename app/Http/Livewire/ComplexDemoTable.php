@@ -17,82 +17,77 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class ComplexDemoTable extends LivewireDatatable
 {
-
-    public function builder()
-    {
-        return User::query()
-            ->leftJoin('planets', 'planets.id', 'users.planet_id');
-    }
+    public $model = User::class;
+    public $with = ['planet'];
+    public $exportable = true;
 
     public function columns()
     {
         return ColumnSet::fromArray([
 
-            NumericColumn::field('users.id')
+            NumericColumn::name('id')
                 ->label('ID')
                 ->filterable()
                 ->linkTo('user', 6),
 
-            Column::field('users.id')
-                ->label('Closure')
+            Column::callback('users.id', function($value, $row) {
+                    return "User $value hails from " . $row->{'planet.name'};
+                })->label('Closure')
                 ->filterable()
-                ->additionalSelects('planets.name AS planetName')
-                ->callback(function($value, $row) {
-                    return 'User ' . $value . ' is from ' . $row->planetName;
-                }),
+                ,
 
-            BooleanColumn::field('users.email_verified_at')
+            BooleanColumn::name('email_verified_at')
                 ->label('Email Verified')
                 ->filterable(),
 
-            Column::field('users.name')
+            Column::name('name')
                 ->defaultSort('asc')
                 ->editable()
                 ->searchable()
                 ->filterable(),
 
-            Column::field('planets.name')
+            Column::name('planet.name')
                 ->label('Planet')
                 ->filterable($this->planets)
                 ->searchable(),
 
-            DateColumn::field('users.dob')
+            DateColumn::name('dob')
                 ->label('DOB')
                 ->filterable(),
 
-            DateColumn::field('users.dob')
+            DateColumn::name('dob AS dob2')
                 ->label('Birthday')
                 ->format('jS F')
-                ->sortBy(DB::raw('DATE_FORMAT(users.dob, "%m%d%Y")')),
+                ->sortBy(DB::raw('DATE_FORMAT(users.dob2, "%m%d%Y")')),
 
-            NumericColumn::raw('FLOOR(DATEDIFF(NOW(), users.dob)/365) AS Age')
-                ->sortBy(DB::raw('DATEDIFF(NOW(), users.dob)'))
-                ->filterable(),
+            // NumericColumn::raw('FLOOR(DATEDIFF(NOW(), users.dob)/365) AS Age')
+            //     ->sortBy(DB::raw('DATEDIFF(NOW(), users.dob)'))
+            //     ->filterable(),
 
-            NumericColumn::field('planets.orbital_period')
+            NumericColumn::name('planet.orbital_period')
                 ->filterable()
                 ->hide(),
 
-            Column::raw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS `Native Age`")
-                ->hide(),
+            // Column::raw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS `Native Age`")
+            //     ->hide(),
 
-            TimeColumn::field('users.bedtime')
+            TimeColumn::name('bedtime')
                 ->filterable(),
 
-            Column::field('users.bedtime')
+                Column::callback('bedtime', 'bedtime')
                 ->label('Go to bed')
-                ->callback('bedtime')->hide(),
+                ->hide(),
 
-            Column::field('users.email')
+            Column::name('email')
                 ->searchable()
                 ->filterable()
                 ->hide(),
 
-            Column::field('users.bio')
+            Column::name('bio')
                 ->truncate(20)
                 ->filterable(),
 
-            Column::field('users.role')
+            Column::name('role')
                 ->searchable()
                 ->filterable([
                     'Stormtrooper',
@@ -105,11 +100,11 @@ class ComplexDemoTable extends LivewireDatatable
                     'Jumptrooper'
                 ]),
 
-            Column::scope('selectGroupedWeaponNames', 'Weapons')
-                ->filterable($this->weapons, 'filterWeaponNames'),
+            // Column::scope('selectGroupedWeaponNames', 'Weapons')
+            //     ->filterable($this->weapons, 'filterWeaponNames'),
 
-            BooleanColumn::scope('hasLightSaber', 'LS')
-                ->filterable(null, 'filterHasLightSaber')
+            // BooleanColumn::scope('hasLightSaber', 'LS')
+            //     ->filterable(null, 'filterHasLightSaber')
         ]);
     }
 

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Intermediate   ')
 @section('content')
-<div class="mx-8 lg:mx-20 py-10 space-y-8">
-    <h1 class="text-2xl">Intermediate</h1>
+<div class="py-10 space-y-8">
+    <h1 class="text-3xl text-gray-700">Intermediate</h1>
 
     <livewire:datatable
         model="App\User"
@@ -13,6 +13,7 @@
         dates="dob"
         times="bedtime|g:i A"
         renames="id|ID, planet_id|Planet ID, dob|DOB"
+        exportable
     />
 
     <x-code path="resources/views/intermediate.blade.php">

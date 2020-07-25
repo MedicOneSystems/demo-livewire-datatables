@@ -15,16 +15,15 @@ class DatatableOfContents extends LivewireDatatable
     public function columns()
     {
         return ColumnSet::fromArray([
-            Column::field('pages.title')
-                ->label('Page')
-                ->callback(function ($value) {
-                    return view('datatables::link', [
-                        'href' => "/" . Str::slug($value),
-                        'slot' => ucfirst($value)
+            Column::callback('title', function ($value) {
+                return view('datatables::link', [
+                    'href' => "/" . Str::slug($value),
+                    'slot' => ucfirst($value)
                     ]);
-                }),
+                })
+                ->label('Page'),
 
-            Column::field('pages.description')
+            Column::name('description')
         ]);
     }
 }
