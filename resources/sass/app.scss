@@ -26,3 +26,7 @@ select:invalid {
         transform: rotate(40deg);
     }
 }
+
+[x-cloak] {
+    display: none;
+}

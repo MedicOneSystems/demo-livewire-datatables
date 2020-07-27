@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Page;
 use Illuminate\Support\Str;
 use Mediconesystems\LivewireDatatables\Column;
-use Mediconesystems\LivewireDatatables\ColumnSet;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class DatatableOfContents extends LivewireDatatable
@@ -14,7 +13,7 @@ class DatatableOfContents extends LivewireDatatable
 
     public function columns()
     {
-        return ColumnSet::fromArray([
+        return [
             Column::callback('title', function ($value) {
                 return view('datatables::link', [
                     'href' => "/" . Str::slug($value),
@@ -24,6 +23,6 @@ class DatatableOfContents extends LivewireDatatable
                 ->label('Page'),
 
             Column::name('description')
-        ]);
+        ];
     }
 }

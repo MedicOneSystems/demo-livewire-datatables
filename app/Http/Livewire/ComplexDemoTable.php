@@ -8,31 +8,39 @@ use App\Weapon;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Mediconesystems\LivewireDatatables\Column;
-use Mediconesystems\LivewireDatatables\ColumnSet;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\TimeColumn;
 use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\NumericColumn;
+use Mediconesystems\LivewireDatatables\EditableColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class ComplexDemoTable extends LivewireDatatable
 {
-    public $model = User::class;
-    public $with = ['planet'];
+    public $hideable = 'inline';
     public $exportable = true;
+
+    public function builder()
+    {
+        return User::query()
+            ->leftJoin('planets', 'planets.id', 'users.planet_id');
+    }
 
     public function columns()
     {
-        return ColumnSet::fromArray([
-
+        return [
             NumericColumn::name('id')
                 ->label('ID')
                 ->filterable()
                 ->linkTo('user', 6),
 
-            Column::callback('users.id', function($value, $row) {
-                    return "User $value hails from " . $row->{'planet.name'};
-                })->label('Closure')
+            Column::callback(['id', 'planet.name'], function($id, $planetName) {
+                    return "User $id hails from " . $planetName;
+                })->label('Computed (php closure)')
+                ->filterable(),
+
+            Column::raw('CONCAT("User ", users.id, " hails from ", planets.name) AS plantName')
+                ->label('Computed (raw SQL)')
                 ->filterable()
                 ,
 
@@ -41,10 +49,11 @@ class ComplexDemoTable extends LivewireDatatable
                 ->filterable(),
 
             Column::name('name')
-                ->defaultSort('asc')
                 ->editable()
+                ->defaultSort('asc')
                 ->searchable()
-                ->filterable(),
+                ->filterable()
+                ,
 
             Column::name('planet.name')
                 ->label('Planet')
@@ -58,30 +67,32 @@ class ComplexDemoTable extends LivewireDatatable
             DateColumn::name('dob AS dob2')
                 ->label('Birthday')
                 ->format('jS F')
-                ->sortBy(DB::raw('DATE_FORMAT(users.dob2, "%m%d%Y")')),
+                ->sortBy(DB::raw('DATE_FORMAT(users.dob, "%m%d%Y")'))
+                ,
 
-            // NumericColumn::raw('FLOOR(DATEDIFF(NOW(), users.dob)/365) AS Age')
-            //     ->sortBy(DB::raw('DATEDIFF(NOW(), users.dob)'))
-            //     ->filterable(),
+            NumericColumn::raw('FLOOR(DATEDIFF(NOW(), users.dob)/365) AS Age')
+                ->filterable(),
 
             NumericColumn::name('planet.orbital_period')
                 ->filterable()
                 ->hide(),
 
-            // Column::raw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS `Native Age`")
-            //     ->hide(),
+            Column::raw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS native_age")
+            ->filterable()
+                ->hide(),
 
             TimeColumn::name('bedtime')
                 ->filterable(),
 
-                Column::callback('bedtime', 'bedtime')
+            Column::callback('bedtime', 'bedtime')
                 ->label('Go to bed')
                 ->hide(),
 
             Column::name('email')
                 ->searchable()
                 ->filterable()
-                ->hide(),
+                ->view('components.email')
+                ,
 
             Column::name('bio')
                 ->truncate(20)
@@ -100,12 +111,12 @@ class ComplexDemoTable extends LivewireDatatable
                     'Jumptrooper'
                 ]),
 
-            // Column::scope('selectGroupedWeaponNames', 'Weapons')
-            //     ->filterable($this->weapons, 'filterWeaponNames'),
+            Column::scope('selectGroupedWeaponNames', 'Weapons')
+                ->filterable($this->weapons, 'filterWeaponNames'),
 
-            // BooleanColumn::scope('hasLightSaber', 'LS')
-            //     ->filterable(null, 'filterHasLightSaber')
-        ]);
+            BooleanColumn::scope('hasLightSaber', 'Light Saber')
+                ->filterable(null, 'filterHasLightSaber')
+        ];
     }
 
     public function getPlanetsProperty()

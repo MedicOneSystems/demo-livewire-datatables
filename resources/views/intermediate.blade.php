@@ -6,27 +6,33 @@
 
     <livewire:datatable
         model="App\User"
+        with="planet"
         sort="name|asc"
-        exclude="bio, created_at, updated_at, email_verified_at"
-        searchable="name, email"
-        hide="planet_id, email"
-        dates="dob"
+        include="id, name, planet.name, dob, bedtime, role, latitude, longitude, created_at"
+        searchable="name, planet.name"
+        hide="latitude, longitude"
+        dates="dob, created_at"
         times="bedtime|g:i A"
-        renames="id|ID, planet_id|Planet ID, dob|DOB"
+        renames="id|ID, planet.name|Planet, dob|DOB, created_at|Created"
+        hideable="select"
         exportable
     />
 
     <x-code path="resources/views/intermediate.blade.php">
 
         @verbatim
-            <livewire:datatable
+        <livewire:datatable
     model="App\User"
+    with="planet"
     sort="name|asc"
-    exclude="bio, created_at, updated_at, email_verified_at"
-    hide="planet_id, email"
-    dates="dob"
+    include="id, name, planet.name, dob, bedtime, role, latitude, longitude, created_at"
+    searchable="name, planet.name"
+    hide="latitude, longitude"
+    dates="dob, created_at"
     times="bedtime|g:i A"
-    renames="id|ID, planet_id|Planet ID, dob|DOB"
+    renames="id|ID, planet.name|Planet, dob|DOB, created_at|Created"
+    hideable="select"
+    exportable
 />
         @endverbatim
     </x-code>

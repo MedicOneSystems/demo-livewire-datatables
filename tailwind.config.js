@@ -9,6 +9,7 @@ module.exports = {
         },
     },
     variants: {
+        border: ['focus'],
         display: ['responsive', 'group-hover'],
     },
     purge: {
