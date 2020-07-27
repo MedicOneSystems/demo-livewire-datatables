@@ -2,7 +2,7 @@
 @section('body')
 <div class="bg-gray-300 min-h-screen">
     <nav class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div class="px-4 lg:px-16 xl:px-32">
             <div class="relative flex justify-between items-center h-16">
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex-shrink-0 flex items-center">
@@ -29,6 +29,8 @@
             </div>
         </div>
     </nav>
-    @yield('content')
+    <div class="px-4 lg:px-16 xl:px-32">
+        @yield('content')
+    </div>
 </div>
 @endsection
