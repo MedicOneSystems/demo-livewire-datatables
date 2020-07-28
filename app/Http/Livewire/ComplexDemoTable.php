@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\User;
 use App\Planet;
+use App\Region;
 use App\Weapon;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,8 @@ class ComplexDemoTable extends LivewireDatatable
     public function builder()
     {
         return User::query()
-            ->leftJoin('planets', 'planets.id', 'users.planet_id');
+            ->leftJoin('planets', 'planets.id', 'users.planet_id')
+            ->leftJoin('regions', 'regions.id', 'planets.region_id');
     }
 
     public function columns()
@@ -41,8 +43,7 @@ class ComplexDemoTable extends LivewireDatatable
 
             Column::raw('CONCAT("User ", users.id, " hails from ", planets.name) AS plantName')
                 ->label('Computed (raw SQL)')
-                ->filterable()
-                ,
+                ->filterable(),
 
             BooleanColumn::name('email_verified_at')
                 ->label('Email Verified')
@@ -52,12 +53,16 @@ class ComplexDemoTable extends LivewireDatatable
                 ->editable()
                 ->defaultSort('asc')
                 ->searchable()
-                ->filterable()
-                ,
+                ->filterable(),
 
             Column::name('planet.name')
                 ->label('Planet')
                 ->filterable($this->planets)
+                ->searchable(),
+
+            Column::name('planet.region.name')
+                ->label('Region')
+                ->filterable($this->regions)
                 ->searchable(),
 
             DateColumn::name('dob')
@@ -67,8 +72,7 @@ class ComplexDemoTable extends LivewireDatatable
             DateColumn::name('dob AS dob2')
                 ->label('Birthday')
                 ->format('jS F')
-                ->sortBy(DB::raw('DATE_FORMAT(users.dob, "%m%d%Y")'))
-                ,
+                ->sortBy(DB::raw('DATE_FORMAT(users.dob, "%m%d%Y")')),
 
             NumericColumn::raw('FLOOR(DATEDIFF(NOW(), users.dob)/365) AS Age')
                 ->filterable(),
@@ -78,7 +82,7 @@ class ComplexDemoTable extends LivewireDatatable
                 ->hide(),
 
             Column::raw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS native_age")
-            ->filterable()
+                ->filterable()
                 ->hide(),
 
             TimeColumn::name('bedtime')
@@ -91,8 +95,7 @@ class ComplexDemoTable extends LivewireDatatable
             Column::name('email')
                 ->searchable()
                 ->filterable()
-                ->view('components.email')
-                ,
+                ->view('components.email'),
 
             Column::name('bio')
                 ->truncate(20)
@@ -122,6 +125,11 @@ class ComplexDemoTable extends LivewireDatatable
     public function getPlanetsProperty()
     {
         return Planet::pluck('name');
+    }
+
+    public function getRegionsProperty()
+    {
+        return Region::pluck('name');
     }
 
     public function getWeaponsProperty()

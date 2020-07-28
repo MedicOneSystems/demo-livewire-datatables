@@ -15,6 +15,7 @@ class CreatePlanetsTable extends Migration
     {
         Schema::create('planets', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('region_id')->nullable()->index();
             $table->string('name', 32)->nullable()->index();
             $table->string('orbital_period', 32)->nullable();
             $table->timestamps();
