@@ -22,6 +22,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function car()
+    {
+        return $this->hasOne(Car::class);
+    }
+
+    public function comrades()
+    {
+        return $this->hasManyThrough(
+            User::class,
+            Planet::class,
+            'id',
+            'planet_id',
+            'planet_id',
+            'id'
+        );
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function weapons()
     {
         return $this->belongsToMany(Weapon::class);
@@ -30,6 +52,18 @@ class User extends Authenticatable
     public function planet()
     {
         return $this->belongsTo(Planet::class);
+    }
+
+    public function region()
+    {
+        return $this->hasOneThrough(
+            Region::class,
+            Planet::class,
+            'id', //planets.id
+            'id',   // regions.id
+            'planet_id', //users.planet_id
+            'region_id', // planets.region_id
+        );
     }
 
     public function scopeSelectGroupedWeaponNames($query, $alias)

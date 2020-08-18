@@ -103,7 +103,7 @@ class PlanetSeeder extends Seeder
         Planet::create([
             "name" => "Stewjon",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Eriadu",
@@ -188,7 +188,7 @@ class PlanetSeeder extends Seeder
         Planet::create([
             "name" => "Aleen Minor",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Vulpter",
@@ -198,7 +198,7 @@ class PlanetSeeder extends Seeder
         Planet::create([
             "name" => "Troiken",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Tund",
@@ -228,7 +228,7 @@ class PlanetSeeder extends Seeder
         Planet::create([
             "name" => "Tholoth",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Iktotch",
@@ -238,7 +238,7 @@ class PlanetSeeder extends Seeder
         Planet::create([
             "name" => "Quermia",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Dorin",
@@ -253,27 +253,27 @@ class PlanetSeeder extends Seeder
         Planet::create([
             "name" => "Mirial",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Serenno",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Concord Dawn",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Zolan",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Ojom",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Skako",
@@ -288,7 +288,7 @@ class PlanetSeeder extends Seeder
         Planet::create([
             "name" => "Shili",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Kalee",
@@ -298,7 +298,7 @@ class PlanetSeeder extends Seeder
         Planet::create([
             "name" => "Umbara",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
         Planet::create([
             "name" => "Tatooine",
@@ -308,7 +308,7 @@ class PlanetSeeder extends Seeder
         Planet::create([
             "name" => "Jakku",
             "region_id" => $regions->random()->id,
-            "orbital_period" => "NA",
+            "orbital_period" => null,
         ]);
     }
 }

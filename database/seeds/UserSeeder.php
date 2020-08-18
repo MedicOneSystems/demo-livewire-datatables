@@ -1,5 +1,7 @@
 <?php
 
+use App\Car;
+use App\Post;
 use App\User;
 use App\Planet;
 use App\Weapon;
@@ -14,6 +16,10 @@ class UserSeeder extends Seeder
         $weapons = Weapon::all();
 
         User::all()->each(function ($user) use ($weapons) {
+            $user->car()->save(factory(Car::class)->make());
+            for ($i = 0; $i < rand(0, 5); $i++) {
+                $user->posts()->save(factory(Post::class)->make());
+            }
             for ($i = 0; $i < rand(0, 3); $i++) {
                 $user->weapons()->attach($weapons->random());
             }

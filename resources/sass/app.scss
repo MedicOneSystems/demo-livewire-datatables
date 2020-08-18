@@ -11,22 +11,6 @@ select:invalid {
 
 @tailwind utilities;
 
-.spinner {
-    position: relative;
-    pointer-events: none;
-    animation: spinAround 240ms infinite linear;
-}
-
-@keyframes spinAround {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(40deg);
-    }
-}
-
 [x-cloak] {
     display: none;
 }

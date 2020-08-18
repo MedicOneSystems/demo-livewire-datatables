@@ -20,6 +20,8 @@
                         </a>
                         <a href="/complex" class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 {{ request()->path() === 'complex' ? 'border-blue-500' : 'border-transparent'}} text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             Complex
+                        </a><a href="/relation" class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 {{ request()->path() === 'relation' ? 'border-blue-500' : 'border-transparent'}} text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                            Relation
                         </a>
                     </div>
                 </div>

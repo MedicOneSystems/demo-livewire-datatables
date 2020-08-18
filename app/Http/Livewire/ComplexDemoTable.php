@@ -11,9 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\TimeColumn;
+use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\BooleanColumn;
-use Mediconesystems\LivewireDatatables\NumericColumn;
-use Mediconesystems\LivewireDatatables\EditableColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class ComplexDemoTable extends LivewireDatatable
@@ -23,25 +22,59 @@ class ComplexDemoTable extends LivewireDatatable
 
     public function builder()
     {
-        return User::query()
-            ->leftJoin('planets', 'planets.id', 'users.planet_id')
-            ->leftJoin('regions', 'regions.id', 'planets.region_id');
+        return User::query()->leftJoin('planets', 'planets.id', 'users.planet_id');
     }
 
     public function columns()
     {
         return [
-            NumericColumn::name('id')
+            NumberColumn::name('id')
                 ->label('ID')
                 ->filterable()
                 ->linkTo('user', 6),
 
-            Column::callback(['id', 'planet.name'], function($id, $planetName) {
-                    return "User $id hails from " . $planetName;
-                })->label('Computed (php closure)')
+            Column::name('planets.name')
+                ->label('Planet')
+                ->filterable($this->planets),
+
+            Column::name('planet.name')
+                ->label('Planet')
+                ->filterable($this->planets),
+
+            Column::name('planet.region.name')
+                ->label('Region')
+                ->filterable($this->regions)
+                ->searchable(),
+
+            Column::name('name')
+                ->filterable()
+                ->editable(),
+
+            Column::name('comrades.name')
+                ->label('Planet Mates')
+                ->truncate()
                 ->filterable(),
 
-            Column::raw('CONCAT("User ", users.id, " hails from ", planets.name) AS plantName')
+            NumberColumn::name('planet.id')->filterable(),
+
+            Column::name('car.model')->label('Car')->filterable(['Audi', 'BMW', 'Caterham', 'Dodge', 'Ferrari', 'Jaguar', 'Lamborghini', 'Porsche']),
+
+            NumberColumn::name('posts.id:count')->label('Post Count')->filterable(),
+
+            Column::name('weapons.name')
+                ->filterable($this->weapons->pluck('name'))
+                ->label('Weapon Names'),
+
+            NumberColumn::name('weapons.id')
+                ->filterable()
+                ->label('Weapon Count'),
+
+            Column::callback(['id', 'planet.name'], function ($id, $planetName) {
+                return "User $id hails from $planetName";
+            })->label('Computed (php closure)')
+                ->filterable(),
+
+            Column::raw('CONCAT("User ", users.id, " hails from ", planets.name) AS planetName')
                 ->label('Computed (raw SQL)')
                 ->filterable(),
 
@@ -49,48 +82,32 @@ class ComplexDemoTable extends LivewireDatatable
                 ->label('Email Verified')
                 ->filterable(),
 
-            Column::name('name')
-                ->editable()
-                ->defaultSort('asc')
-                ->searchable()
-                ->filterable(),
-
-            Column::name('planet.name')
-                ->label('Planet')
-                ->filterable($this->planets)
-                ->searchable(),
-
-            Column::name('planet.region.name')
-                ->label('Region')
-                ->filterable($this->regions)
-                ->searchable(),
-
             DateColumn::name('dob')
                 ->label('DOB')
                 ->filterable(),
 
-            DateColumn::name('dob AS dob2')
+            DateColumn::raw('dob AS dob2')
                 ->label('Birthday')
                 ->format('jS F')
                 ->sortBy(DB::raw('DATE_FORMAT(users.dob, "%m%d%Y")')),
 
-            NumericColumn::raw('FLOOR(DATEDIFF(NOW(), users.dob)/365) AS Age')
+            NumberColumn::raw('FLOOR(DATEDIFF(NOW(), users.dob)/365) AS Age')
                 ->filterable(),
 
-            NumericColumn::name('planet.orbital_period')
+            NumberColumn::name('planet.orbital_period')
                 ->filterable()
-                ->hide(),
+            /* ->hide() */,
 
             Column::raw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS native_age")
                 ->filterable()
-                ->hide(),
+            /* ->hide() */,
 
             TimeColumn::name('bedtime')
                 ->filterable(),
 
-            Column::callback('bedtime', 'bedtime')
+            Column::callback('bedtime', 'computeBedtime')
                 ->label('Go to bed')
-                ->hide(),
+            /* ->hide() */,
 
             Column::name('email')
                 ->searchable()
@@ -137,8 +154,11 @@ class ComplexDemoTable extends LivewireDatatable
         return Weapon::all();
     }
 
-    public function bedtime($date){
-        if (!$date) { return; }
+    public function computeBedtime($date)
+    {
+        if (!$date) {
+            return;
+        }
         return Carbon::parse($date)->isPast()
             ? Carbon::parse($date)->addDay()->diffForHumans(['parts' => 2])
             : Carbon::parse($date)->diffForHumans(['parts' => 2]);

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5053d1e83cf772b3faa0ac4194920ee6",
+    "content-hash": "570670eb83b5694e2b4b5851f3438e70",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -60,16 +60,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.147.6",
+            "version": "3.147.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "a487671fc722b839c647d7dc4907bfb485f956db"
+                "reference": "3ec07169c15bb05f587be47bf6f393df5ebf8f75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a487671fc722b839c647d7dc4907bfb485f956db",
-                "reference": "a487671fc722b839c647d7dc4907bfb485f956db",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3ec07169c15bb05f587be47bf6f393df5ebf8f75",
+                "reference": "3ec07169c15bb05f587be47bf6f393df5ebf8f75",
                 "shasum": ""
             },
             "require": {
@@ -141,7 +141,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-07-27T18:13:59+00:00"
+            "time": "2020-08-03T21:12:57+00:00"
         },
         {
             "name": "brick/math",
@@ -2004,17 +2004,11 @@
         },
         {
             "name": "mediconesystems/livewire-datatables",
-            "version": "v0.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/MedicOneSystems/livewire-datatables.git",
-                "reference": "2cfe63e9b15fce45e80600b53f162ac3c6f7b124"
-            },
+            "version": "dev-somethingnew",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/2cfe63e9b15fce45e80600b53f162ac3c6f7b124",
-                "reference": "2cfe63e9b15fce45e80600b53f162ac3c6f7b124",
-                "shasum": ""
+                "type": "path",
+                "url": "../livewire-datatables",
+                "reference": "ba4342dddff29adaf8ee42aca7a55cf49b464da6"
             },
             "require": {
                 "illuminate/support": "^7.0",
@@ -2042,7 +2036,19 @@
                     "Mediconesystems\\LivewireDatatables\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Mediconesystems\\LivewireDatatables\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -2058,7 +2064,9 @@
                 "livewire-datatables",
                 "mediconesystems"
             ],
-            "time": "2020-07-28T03:27:42+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "monolog/monolog",
@@ -2153,25 +2161,25 @@
         },
         {
             "name": "mtdowling/jmespath.php",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jmespath/jmespath.php.git",
-                "reference": "52168cb9472de06979613d365c7f1ab8798be895"
+                "reference": "42dae2cbd13154083ca6d70099692fef8ca84bfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/52168cb9472de06979613d365c7f1ab8798be895",
-                "reference": "52168cb9472de06979613d365c7f1ab8798be895",
+                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/42dae2cbd13154083ca6d70099692fef8ca84bfb",
+                "reference": "42dae2cbd13154083ca6d70099692fef8ca84bfb",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0",
-                "symfony/polyfill-mbstring": "^1.4"
+                "php": "^5.4 || ^7.0 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.17"
             },
             "require-dev": {
-                "composer/xdebug-handler": "^1.2",
-                "phpunit/phpunit": "^4.8.36|^7.5.15"
+                "composer/xdebug-handler": "^1.4",
+                "phpunit/phpunit": "^4.8.36 || ^7.5.15"
             },
             "bin": [
                 "bin/jp.php"
@@ -2179,7 +2187,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -2206,7 +2214,7 @@
                 "json",
                 "jsonpath"
             ],
-            "time": "2019-12-30T18:03:34+00:00"
+            "time": "2020-07-31T21:01:56+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -2256,16 +2264,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.36.1",
+            "version": "2.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "ee7378a36cc62952100e718bcc58be4c7210e55f"
+                "reference": "1f61206de973d67f36ce50f041c792ddac663c3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/ee7378a36cc62952100e718bcc58be4c7210e55f",
-                "reference": "ee7378a36cc62952100e718bcc58be4c7210e55f",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/1f61206de973d67f36ce50f041c792ddac663c3e",
+                "reference": "1f61206de973d67f36ce50f041c792ddac663c3e",
                 "shasum": ""
             },
             "require": {
@@ -2341,7 +2349,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-04T12:29:56+00:00"
+            "time": "2020-07-28T06:04:54+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3301,16 +3309,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "4.0.1",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "ba8fff1d3abb8bb4d35a135ed22a31c6ef3ede3d"
+                "reference": "988dbefc7878d0a35f12afb4df1f7dd0bd153c43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/ba8fff1d3abb8bb4d35a135ed22a31c6ef3ede3d",
-                "reference": "ba8fff1d3abb8bb4d35a135ed22a31c6ef3ede3d",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/988dbefc7878d0a35f12afb4df1f7dd0bd153c43",
+                "reference": "988dbefc7878d0a35f12afb4df1f7dd0bd153c43",
                 "shasum": ""
             },
             "require": {
@@ -3325,7 +3333,7 @@
             },
             "require-dev": {
                 "codeception/aspect-mock": "^3",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2 || ^0.7.0",
                 "doctrine/annotations": "^1.8",
                 "goaop/framework": "^2",
                 "mockery/mockery": "^1.3",
@@ -3334,8 +3342,8 @@
                 "php-mock/php-mock-mockery": "^1.3",
                 "php-mock/php-mock-phpunit": "^2.5",
                 "php-parallel-lint/php-parallel-lint": "^1.1",
+                "phpbench/phpbench": "^0.17.1",
                 "phpstan/extension-installer": "^1.0",
-                "phpstan/phpdoc-parser": "0.4.3",
                 "phpstan/phpstan": "^0.12",
                 "phpstan/phpstan-mockery": "^0.12",
                 "phpstan/phpstan-phpunit": "^0.12",
@@ -3384,7 +3392,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-29T20:13:32+00:00"
+            "time": "2020-07-28T16:51:01+00:00"
         },
         {
             "name": "riverline/multipart-parser",
@@ -6120,16 +6128,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "2.3.4",
+            "version": "2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "87335b120bc9652e4ee2bf285b7322a785211476"
+                "reference": "58dc4a8df3d41174c677a370b6779b694e4539e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/87335b120bc9652e4ee2bf285b7322a785211476",
-                "reference": "87335b120bc9652e4ee2bf285b7322a785211476",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/58dc4a8df3d41174c677a370b6779b694e4539e7",
+                "reference": "58dc4a8df3d41174c677a370b6779b694e4539e7",
                 "shasum": ""
             },
             "require": {
@@ -6188,7 +6196,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2020-07-27T15:17:39+00:00"
+            "time": "2020-08-01T21:20:01+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -8129,7 +8137,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "mediconesystems/livewire-datatables": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

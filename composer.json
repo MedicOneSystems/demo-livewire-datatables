@@ -20,7 +20,7 @@
         "laravel/vapor-core": "^2.8",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^1.2",
-        "mediconesystems/livewire-datatables": "^0.0.4"
+        "mediconesystems/livewire-datatables": "dev-somethingnew"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
@@ -29,6 +29,12 @@
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../livewire-datatables"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

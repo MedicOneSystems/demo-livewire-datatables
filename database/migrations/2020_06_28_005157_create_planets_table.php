@@ -17,7 +17,7 @@ class CreatePlanetsTable extends Migration
             $table->id();
             $table->unsignedInteger('region_id')->nullable()->index();
             $table->string('name', 32)->nullable()->index();
-            $table->string('orbital_period', 32)->nullable();
+            $table->integer('orbital_period')->nullable();
             $table->timestamps();
         });
     }
