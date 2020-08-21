@@ -17,7 +17,7 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class ComplexDemoTable extends LivewireDatatable
 {
-    public $hideable = 'buttons';
+    public $hideable = 'select';
     public $exportable = true;
 
     public function builder()

@@ -8,8 +8,13 @@
 
     <livewire:datatable-of-contents hide-header hide-pagination />
 
-    <x-code file="app/Http/Livewire/DatatableOfContents.php" />
+    <x-code path="resources/views/home.blade.php">
+        @verbatim
+        <livewire:datatable-of-contents hide-header hide-pagination />
+        @endverbatim
+    </x-code>
 
+    <x-code file="app/Http/Livewire/DatatableOfContents.php" />
 </div>
 
 @endsection

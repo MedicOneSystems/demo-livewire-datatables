@@ -20,9 +20,7 @@ class UserSeeder extends Seeder
             for ($i = 0; $i < rand(0, 5); $i++) {
                 $user->posts()->save(factory(Post::class)->make());
             }
-            for ($i = 0; $i < rand(0, 3); $i++) {
-                $user->weapons()->attach($weapons->random());
-            }
+            $user->weapons()->attach($weapons->random(rand(0, 3)));
         });
     }
 }

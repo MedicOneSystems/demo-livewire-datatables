@@ -11,5 +11,3 @@ environments:
         build:
             - 'composer install --no-dev'
             - 'php artisan event:cache'
-        deploy:
-            - 'php artisan migrate:fresh --force --seed'

@@ -19,8 +19,10 @@ class DatatableOfContents extends LivewireDatatable
                     'href' => "/" . Str::slug($value),
                     'slot' => ucfirst($value)
                     ]);
-                })
-                ->label('Page'),
+            })
+                ->label('Page')
+                ->sortBy('id')
+                ->defaultSort('asc'),
 
             Column::name('description')
         ];
