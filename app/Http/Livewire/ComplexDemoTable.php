@@ -37,10 +37,6 @@ class ComplexDemoTable extends LivewireDatatable
                 ->label('Planet')
                 ->filterable($this->planets),
 
-            Column::name('planet.name')
-                ->label('Planet')
-                ->filterable($this->planets),
-
             Column::name('planet.region.name')
                 ->label('Region')
                 ->filterable($this->regions)
