@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e414657afc43752425782d7712a10e5",
+    "content-hash": "b5371c0cf9a727dc1bbffba4f300d2bf",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1589,16 +1589,16 @@
         },
         {
             "name": "league/flysystem-aws-s3-v3",
-            "version": "1.0.26",
+            "version": "1.0.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-aws-s3-v3.git",
-                "reference": "580838fd732838c0d2e8751c403e5a415363da79"
+                "reference": "af7384a12f7cd7d08183390d930c9d0ec629c990"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/580838fd732838c0d2e8751c403e5a415363da79",
-                "reference": "580838fd732838c0d2e8751c403e5a415363da79",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/af7384a12f7cd7d08183390d930c9d0ec629c990",
+                "reference": "af7384a12f7cd7d08183390d930c9d0ec629c990",
                 "shasum": ""
             },
             "require": {
@@ -1632,7 +1632,7 @@
                 }
             ],
             "description": "Flysystem adapter for the AWS S3 SDK v3.x",
-            "time": "2020-08-18T10:54:07+00:00"
+            "time": "2020-08-22T08:43:01+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -2056,16 +2056,16 @@
         },
         {
             "name": "mediconesystems/livewire-datatables",
-            "version": "v0.1.3",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MedicOneSystems/livewire-datatables.git",
-                "reference": "a58d5cf4a98011fcb0ada456b89e0c0d50ef24dd"
+                "reference": "1edef9ffbf043d27e9ab8c0b2c0e5db9b34df28a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/a58d5cf4a98011fcb0ada456b89e0c0d50ef24dd",
-                "reference": "a58d5cf4a98011fcb0ada456b89e0c0d50ef24dd",
+                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/1edef9ffbf043d27e9ab8c0b2c0e5db9b34df28a",
+                "reference": "1edef9ffbf043d27e9ab8c0b2c0e5db9b34df28a",
                 "shasum": ""
             },
             "require": {
@@ -2110,7 +2110,7 @@
                 "livewire-datatables",
                 "mediconesystems"
             ],
-            "time": "2020-08-21T21:32:50+00:00"
+            "time": "2020-08-22T14:17:55+00:00"
         },
         {
             "name": "monolog/monolog",

@@ -10,7 +10,7 @@ Route::view('/simple', 'simple')->name('simple');
 Route::view('/intermediate', 'intermediate')->name('intermediate');
 Route::view('/complex', 'complex')->name('complex');
 Route::view('/relation', 'relation')->name('relation');
-
+Route::view('/deletable', 'deletable')->name('deletable');
 
 Route::middleware('guest')->group(function () {
     Route::view('login', 'auth.login')->name('login');

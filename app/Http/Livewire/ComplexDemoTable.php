@@ -35,7 +35,7 @@ class ComplexDemoTable extends LivewireDatatable
 
             Column::name('planets.name')
                 ->label('Planet')
-                ->filterable($this->planets),
+                ->filterable($this->planets)->alignRight(),
 
             Column::name('planet.region.name')
                 ->label('Region')
@@ -51,11 +51,15 @@ class ComplexDemoTable extends LivewireDatatable
                 ->truncate()
                 ->filterable(),
 
-            NumberColumn::name('planet.id')->filterable(),
+            Column::name('car.model')
+                ->label('Car')
+                ->alignCenter()
+                ->filterable(['Audi', 'BMW', 'Caterham', 'Dodge', 'Ferrari', 'Jaguar', 'Lamborghini', 'Porsche']),
 
-            Column::name('car.model')->label('Car')->filterable(['Audi', 'BMW', 'Caterham', 'Dodge', 'Ferrari', 'Jaguar', 'Lamborghini', 'Porsche']),
-
-            NumberColumn::name('posts.id:count')->label('Post Count')->filterable(),
+            NumberColumn::name('posts.id:count')
+                ->label('Post Count')
+                ->filterable()
+                ->alignRight(),
 
             Column::name('weapons.name')
                 ->filterable($this->weapons->pluck('name'))
@@ -91,19 +95,18 @@ class ComplexDemoTable extends LivewireDatatable
                 ->filterable(),
 
             NumberColumn::name('planet.orbital_period')
-                ->filterable()
-            /* ->hide() */,
+                ->filterable(),
 
             Column::raw("IF(planets.orbital_period REGEXP '^-?[0-9]+$', CONCAT(ROUND(DATEDIFF(NOW(), users.dob) / planets.orbital_period, 1), ' ', planets.name, ' years'), '---') AS native_age")
                 ->filterable()
-            /* ->hide() */,
+                ->hide(),
 
             TimeColumn::name('bedtime')
                 ->filterable(),
 
             Column::callback('bedtime', 'computeBedtime')
                 ->label('Go to bed')
-            /* ->hide() */,
+                ->hide(),
 
             Column::name('email')
                 ->searchable()
