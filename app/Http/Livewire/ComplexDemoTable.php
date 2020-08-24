@@ -28,6 +28,8 @@ class ComplexDemoTable extends LivewireDatatable
     public function columns()
     {
         return [
+            Column::checkbox('name'),
+
             NumberColumn::name('id')
                 ->label('ID')
                 ->filterable()
