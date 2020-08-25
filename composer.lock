@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bb13767d790af05de9912aa8894ece1",
+    "content-hash": "a3f9e1bb82625bc0da3ee835410f1c27",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2057,10 +2057,16 @@
         {
             "name": "mediconesystems/livewire-datatables",
             "version": "dev-selectable",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MedicOneSystems/livewire-datatables.git",
+                "reference": "f2fa7de81c148bfefe33faa34783e9ea4d3a3f50"
+            },
             "dist": {
-                "type": "path",
-                "url": "../livewire-datatables",
-                "reference": "14725f7c82294d6043ef6605fad30458042427b3"
+                "type": "zip",
+                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/f2fa7de81c148bfefe33faa34783e9ea4d3a3f50",
+                "reference": "f2fa7de81c148bfefe33faa34783e9ea4d3a3f50",
+                "shasum": ""
             },
             "require": {
                 "illuminate/support": "^7.0",
@@ -2088,19 +2094,7 @@
                     "Mediconesystems\\LivewireDatatables\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Mediconesystems\\LivewireDatatables\\Tests\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "test-coverage": [
-                    "vendor/bin/phpunit --coverage-html coverage"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2116,9 +2110,7 @@
                 "livewire-datatables",
                 "mediconesystems"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2020-08-25T00:29:47+00:00"
         },
         {
             "name": "monolog/monolog",

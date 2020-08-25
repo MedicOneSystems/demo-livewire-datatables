@@ -19,6 +19,7 @@ class ComplexDemoTable extends LivewireDatatable
 {
     public $hideable = 'select';
     public $exportable = true;
+    public $afterTableSlot = 'components.selected';
 
     public function builder()
     {
@@ -28,7 +29,7 @@ class ComplexDemoTable extends LivewireDatatable
     public function columns()
     {
         return [
-            Column::checkbox('name'),
+            Column::checkbox(),
 
             NumberColumn::name('id')
                 ->label('ID')

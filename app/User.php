@@ -29,14 +29,7 @@ class User extends Authenticatable
 
     public function comrades()
     {
-        return $this->hasManyThrough(
-            User::class,
-            Planet::class,
-            'id',
-            'planet_id',
-            'planet_id',
-            'id'
-        );
+        return $this->hasManyThrough(User::class, Planet::class, 'id', 'planet_id', 'planet_id', 'id');
     }
 
     public function posts()
@@ -56,14 +49,7 @@ class User extends Authenticatable
 
     public function region()
     {
-        return $this->hasOneThrough(
-            Region::class,
-            Planet::class,
-            'id', //planets.id
-            'id',   // regions.id
-            'planet_id', //users.planet_id
-            'region_id', // planets.region_id
-        );
+        return $this->hasOneThrough(Region::class, Planet::class, 'id', 'id', 'planet_id', 'region_id');
     }
 
     public function scopeSelectGroupedWeaponNames($query, $alias)
