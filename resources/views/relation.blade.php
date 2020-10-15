@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Complex')
+@section('title', 'Relation')
 @section('content')
 <div class="py-10 space-y-8">
     <h1 class="text-3xl text-gray-700">Complex</h1>

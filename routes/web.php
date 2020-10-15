@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\User;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Route;
 use Mediconesystems\LivewireDatatables\Exports\UsersExport;
 
 Route::view('/', 'home')->name('home');
@@ -10,6 +11,7 @@ Route::view('/simple', 'simple')->name('simple');
 Route::view('/intermediate', 'intermediate')->name('intermediate');
 Route::view('/complex', 'complex')->name('complex');
 Route::view('/relation', 'relation')->name('relation');
+Route::view('/actions', 'actions')->name('actions');
 Route::view('/deletable', 'deletable')->name('deletable');
 
 Route::middleware('guest')->group(function () {
@@ -21,9 +23,13 @@ Route::get('user/{user}', function ($user) {
     return response()->json($user);
 })->name('users.show');
 
-Route::get('user/{user}/edit', function ($user) {
+Route::get('user/{user}/edit', function (User $user) {
     return response()->json($user);
 })->name('users.edit');
+
+Route::delete('user/{user}', function ($user) {
+    return response()->json($user);
+})->name('users.delete');
 
 Route::view('password/reset', 'auth.passwords.email')->name('password.request');
 Route::get('password/reset/{token}', 'Auth\PasswordResetController')->name('password.reset');
