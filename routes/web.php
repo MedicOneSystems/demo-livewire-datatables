@@ -17,6 +17,14 @@ Route::middleware('guest')->group(function () {
     Route::view('register', 'auth.register')->name('register');
 });
 
+Route::get('user/{user}', function ($user) {
+    return response()->json($user);
+})->name('users.show');
+
+Route::get('user/{user}/edit', function ($user) {
+    return response()->json($user);
+})->name('users.edit');
+
 Route::view('password/reset', 'auth.passwords.email')->name('password.request');
 Route::get('password/reset/{token}', 'Auth\PasswordResetController')->name('password.reset');
 

@@ -12,7 +12,7 @@
     "devDependencies": {
         "@tailwindcss/custom-forms": "^0.2",
         "@tailwindcss/ui": "^0.1",
-        "alpinejs": "^2.0",
+        "alpinejs": "^2.6",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^7.0",
