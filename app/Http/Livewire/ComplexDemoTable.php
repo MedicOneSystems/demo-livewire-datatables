@@ -43,6 +43,7 @@ class ComplexDemoTable extends LivewireDatatable
             Column::name('planet.region.name')
                 ->label('Region')
                 ->filterable($this->regions)
+                ->truncate(8)
                 ->searchable(),
 
             Column::name('name')

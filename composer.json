@@ -20,7 +20,7 @@
         "laravel/vapor-core": "^2.8",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^2.2",
-        "mediconesystems/livewire-datatables": "^0.4.1"
+        "mediconesystems/livewire-datatables": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
@@ -31,7 +31,7 @@
     },
     "repositories": [{
         "type": "vcs",
-        "url": "https://github.com/mediconesystems/livewire-datatables"
+        "url": "https://github.com/MedicOneSystems/livewire-datatables"
     }],
     "config": {
         "optimize-autoloader": true,
