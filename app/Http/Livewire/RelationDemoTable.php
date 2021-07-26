@@ -39,7 +39,8 @@ class RelationDemoTable extends LivewireDatatable
 
             NumberColumn::name('weapons.id:group_concat')
                 ->filterable()
-                ->label('Weapon Concat'),
+                ->label('Weapon Concat')
+                ->unsortable(),
 
             NumberColumn::name('weapons.id:sum')
                 ->filterable()

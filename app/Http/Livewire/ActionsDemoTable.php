@@ -25,7 +25,7 @@ class ActionsDemoTable extends LivewireDatatable
 
             Column::callback(['id', 'name'], function ($id, $name) {
                 return view('table-actions', ['id' => $id, 'name' => $name]);
-            })
+            })->unsortable()
         ];
     }
 }

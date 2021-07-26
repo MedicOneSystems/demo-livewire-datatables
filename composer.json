@@ -30,8 +30,8 @@
         "phpunit/phpunit": "^8.5"
     },
     "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/MedicOneSystems/livewire-datatables"
+        "type": "path",
+        "url": "../livewire-datatables"
     }],
     "config": {
         "optimize-autoloader": true,
