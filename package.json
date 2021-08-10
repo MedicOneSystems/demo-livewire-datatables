@@ -12,8 +12,8 @@
     "devDependencies": {
         "@tailwindcss/custom-forms": "^0.2",
         "@tailwindcss/ui": "^0.1",
-        "alpinejs": "^2.6",
-        "browser-sync": "^2.26.7",
+        "alpinejs": "^3.2.3",
+        "browser-sync": "^2.27.5",
         "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^7.0",
         "laravel-mix": "^5.0.1",
@@ -25,10 +25,11 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@alpinejs/persist": "^3.2.3",
         "@tailwindcss/forms": "^0.3.3",
         "autoprefixer": "^10.2.6",
         "postcss": "^8.3.5",
-        "prismjs": "^1.20.0",
+        "prismjs": "^1.24.1",
         "turbolinks": "^5.2.0"
     }
 }

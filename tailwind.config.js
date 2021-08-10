@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+    mode: 'jit',
     theme: {
         extend: {
             fontFamily: {
@@ -8,29 +9,15 @@ module.exports = {
             },
         },
     },
-    variants: {
-        border: ['focus'],
-        display: ['responsive', 'group-hover'],
-    },
-    purge: {
-        content: [
-            './app/**/*.php',
-            './resources/**/*.html',
-            './resources/**/*.js',
-            './resources/**/*.jsx',
-            './resources/**/*.ts',
-            './resources/**/*.tsx',
-            './resources/**/*.php',
-            './resources/**/*.vue',
-            './resources/**/*.twig',
-        ],
-        options: {
-            defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],
-            whitelistPatterns: [/-active$/, /-enter$/, /-leave-to$/, /show$/],
-        },
-    },
+    purge: [
+        './app/**/*.php',
+        './vendor/laravel/jetstream/**/*.blade.php',
+        './vendor/mediconesystems/**/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+        './app/Providers/AppServiceProvider.php',
+    ],
     plugins: [
         require('@tailwindcss/forms'),
-        require('@tailwindcss/ui'),
     ],
 };
