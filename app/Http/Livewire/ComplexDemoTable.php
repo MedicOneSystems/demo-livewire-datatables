@@ -20,6 +20,7 @@ class ComplexDemoTable extends LivewireDatatable
     public $hideable = 'select';
     public $exportable = true;
     public $complex = true;
+    public $persistComplexQuery = true;
     public $afterTableSlot = 'components.selected';
 
     public function builder()
