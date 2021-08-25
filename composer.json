@@ -20,7 +20,7 @@
         "laravel/vapor-core": "^2.8",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^2.2",
-        "mediconesystems/livewire-datatables": "dev-master"
+        "mediconesystems/livewire-datatables": "^0.6.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
