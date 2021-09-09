@@ -35,27 +35,33 @@ class RelationDemoTable extends LivewireDatatable
 
             NumberColumn::name('weapons.id:count')
                 ->filterable()
+                ->alignRight()
                 ->label('Weapon Count'),
 
             NumberColumn::name('weapons.id:group_concat')
                 ->filterable()
+                ->alignRight()
                 ->label('Weapon Concat')
                 ->unsortable(),
 
             NumberColumn::name('weapons.id:sum')
                 ->filterable()
+                ->alignRight()
                 ->label('Weapon Sum'),
 
             NumberColumn::name('weapons.id:avg')
                 ->filterable()
+                ->alignRight()
                 ->label('Weapon Avg'),
 
             NumberColumn::name('weapons.id:min')
                 ->filterable()
+                ->alignRight()
                 ->label('Weapon Min'),
 
             NumberColumn::name('weapons.id:max')
                 ->filterable()
+                ->alignRight()
                 ->label('Weapon Max'),
         ];
     }

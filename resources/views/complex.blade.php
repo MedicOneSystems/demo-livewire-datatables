@@ -15,5 +15,7 @@
     <x-code file="app/Http/Livewire/ComplexDemoTable.php" />
 
     <x-code file="app/User.php" />
+
+    <span class="hidden bg-red-500 text-white"></span>
 </div>
 @endsection

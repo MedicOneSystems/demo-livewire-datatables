@@ -6,6 +6,7 @@ use App\User;
 use App\Planet;
 use App\Region;
 use App\Weapon;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Mediconesystems\LivewireDatatables\Column;
@@ -44,6 +45,7 @@ class ComplexDemoTable extends LivewireDatatable
 
             Column::name('planet.region.name')
                 ->label('Region')
+                ->defaultSort('desc')
                 ->filterable($this->regions)
                 ->truncate(8)
                 ->searchable(),
@@ -73,12 +75,16 @@ class ComplexDemoTable extends LivewireDatatable
 
             NumberColumn::name('weapons.id')
                 ->filterable()
+                ->exportCallback(function ($value) {
+                    return (string) $value;
+                })
                 ->label('Weapon Count'),
 
             Column::callback(['id', 'planet.name'], function ($id, $planetName) {
                 return "User $id hails from $planetName";
             })->label('Computed (php closure)')
-                ->filterable(),
+                ->filterOn('planets.name')
+                ->filterable($this->planets),
 
             Column::raw('CONCAT("User ", users.id, " hails from ", planets.name) AS planetName')
                 ->label('Computed (raw SQL)')
@@ -167,5 +173,15 @@ class ComplexDemoTable extends LivewireDatatable
         return Carbon::parse($date)->isPast()
             ? Carbon::parse($date)->addDay()->diffForHumans(['parts' => 2])
             : Carbon::parse($date)->diffForHumans(['parts' => 2]);
+    }
+
+    public function rowClasses($row, $loop)
+    {
+        return 'divide-x divide-gray-100 text-sm text-gray-900 ' . ($this->rowIsSelected($row) ? 'bg-yellow-100' : ($row->{'car.model'} === 'Ferrari' ? 'bg-red-500' : ($loop->even ? 'bg-gray-100' : 'bg-gray-50')));
+    }
+
+    public function cellClasses($row, $column)
+    {
+        return 'text-sm ' . ($this->rowIsSelected($row) ? ' text-gray-900' : ($row->{'car.model'} === 'Ferrari' ? ' text-white' : ' text-gray-900'));
     }
 }
