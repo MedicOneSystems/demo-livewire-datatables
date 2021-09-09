@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.2.5|^8.0",
         "calebporzio/sushi": "^2.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -20,7 +20,7 @@
         "laravel/vapor-core": "^2.8",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^2.2",
-        "mediconesystems/livewire-datatables": "^0.6.0"
+        "mediconesystems/livewire-datatables": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
@@ -30,8 +30,8 @@
         "phpunit/phpunit": "^8.5"
     },
     "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/MedicOneSystems/livewire-datatables"
+        "type": "path",
+        "url": "../livewire-datatables"
     }],
     "config": {
         "optimize-autoloader": true,
