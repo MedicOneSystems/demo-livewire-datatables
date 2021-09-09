@@ -2258,21 +2258,21 @@
         },
         {
             "name": "mediconesystems/livewire-datatables",
-            "version": "v0.6.4",
+            "version": "v0.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MedicOneSystems/livewire-datatables.git",
-                "reference": "d42a1c789ead11a6fcf00b94658829879bc368f9"
+                "reference": "519639404c94999062af03c7618b0d562939ee94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/d42a1c789ead11a6fcf00b94658829879bc368f9",
-                "reference": "d42a1c789ead11a6fcf00b94658829879bc368f9",
+                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/519639404c94999062af03c7618b0d562939ee94",
+                "reference": "519639404c94999062af03c7618b0d562939ee94",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "^7.0|^8.0",
-                "livewire/livewire": "^1.2|^2.0",
+                "livewire/livewire": "^2.4.4",
                 "maatwebsite/excel": "^3.1",
                 "php": "^7.2.5|^8.0"
             },
@@ -2315,9 +2315,9 @@
             ],
             "support": {
                 "issues": "https://github.com/MedicOneSystems/livewire-datatables/issues",
-                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.6.4"
+                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.6.5"
             },
-            "time": "2021-08-30T19:45:56+00:00"
+            "time": "2021-09-09T12:57:28+00:00"
         },
         {
             "name": "monolog/monolog",
